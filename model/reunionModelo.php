@@ -139,10 +139,10 @@ class Reunion
                     <li>Obervaciones: <?php echo $reunion->getObservaciones() ?></li>
                     <li>Coste Estimado: <?php echo $reunion->getCosteEstimado() ?>&nbsp€</li>
                     </ul>
-                    <div class="botones-opcion"><a href="../views/empleados_asistentes.php?id=<?php echo $reunion->getId() ?>">Ver Invitados</a></div>
-                    <div class="botones-opcion"><a href="../views/empleado_invitar_vista.php?id=<?php echo $reunion->getId() ?>">Invitar</a></div>
-                    <div class="botones-opcion"><a href="../views/reunionOrganizar.php?id=<?php echo $reunion->getId() ?>">Editar</a></div>
-                    <div data_id_meeting='<?php echo $reunion->getId() ?>' class='meeting-plans-delete' ><a href="#">Eliminar</a></div>
+                    <a href="../views/empleados_asistentes.php?id=<?php echo $reunion->getId() ?>"><div class="botones-opcion">Ver Invitados</div></a>
+                    <a href="../views/empleado_invitar_vista.php?id=<?php echo $reunion->getId() ?>"><div class="botones-opcion">Invitar</div></a>
+                    <a href="../views/reunionOrganizar.php?id=<?php echo $reunion->getId() ?>"><div class="botones-opcion">Editar</div></a>
+                    <a href="#"><div data_id_meeting='<?php echo $reunion->getId() ?>' class='meeting-plans-delete' >Eliminar</div></a>
 
             </div>
 

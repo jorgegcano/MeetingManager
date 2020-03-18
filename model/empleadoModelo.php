@@ -222,17 +222,16 @@ endforeach;
 
         $listaEmpleados = $dao->todosLosEmpleados();
 
-        $contador = 0;
-
         echo   "<div class='plans' id='plans'>";
 
         foreach ($listaEmpleados as $empleado) {
 
             if (!$comprobarInvitados->compruebaInvitados($empleado->getId(), $idReunion_fk) && !$empleado->getactivo() == 0) { ?>
 
-            <div style="position:relative;" class='planInvite' data-position='<?php echo $contador++ ?>' data-mail='<?php echo $empleado->getEmail()?>' data-id='<?php echo $empleado->getId() ?>'>
+            <div style="position:relative;" class='planInvite'>
+
                 <input type="hidden" id="accion" value="invitarEmpleado">
-                <h2 class='plan-title cursor'><?php echo $empleado->getNombre() . ' ' . $empleado->getApellidos() ?></h2>
+                <h2 class='plan-title cursor'><?php echo $empleado->getNombre() . ' ' . $empleado->getApellidos() . ' ' . $empleado->getId() ?></h2>
                 <h2 class='plan-title cursor'><?php echo $empleado->getCosteHora() . ' €/H' ?></h2>
                 <?php echo $this->checkPhoto($empleado->getFoto()); ?>
                 <ul class='datos-empleado'>
@@ -240,6 +239,7 @@ endforeach;
                     <li><strong>DEPARTAMENTO: </strong><?php echo $empleado->getDepartamento() ?></li>
                     <li><strong>EMAIL: </strong> <?php echo $empleado->getEmail() ?> </li>
                 </ul>
+                <div style='color:#ffffff; background-color:red; padding:1rem;border-radius:1rem;' class='planInviteButton' data-mail='<?php echo $empleado->getEmail()?>' data-id='<?php echo $empleado->getId() ?>'>Invitar</div>
             </div>
 
         <?php }

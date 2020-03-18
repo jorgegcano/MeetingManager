@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 include '../includes/header.php';
 ?>
 
-<div class= "contenedor-titulos"><h2>Reuniónes programadas <?php echo date("Y-m-d H:i:s"); ?> </h2></div>
+<div class= "contenedor-titulos"><h2>Reuniónes programadas</h2></div>
 
 <?php
 try{

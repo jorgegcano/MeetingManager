@@ -189,16 +189,14 @@ var today = new Date();
     filePreview(this);
   });
 
-  $(".planInvite").click(function() {
+  $(".planInviteButton").click(function(e) {
   const idInvitado = $(this).attr('data-id');
   const idReunion = QueryString.id;
   const email = $(this).attr('data-mail');
-  const dataPosition = $(this).attr('data-position');
 
-  //console.log(idInvitado);
+  console.log(idInvitado);
   //console.log(idReunion);
   //console.log(email);
-  //console.log(dataPosition);
 
   var url = `../controller/empleado_reunion_controlador.php?idEmpleado_fk=${idInvitado}&email=${email}&idReunion_fk=${idReunion}&accion=invitar`;
 
@@ -208,24 +206,21 @@ var today = new Date();
     processData: false,
     beforeSend: function(){
       console.log('cargando');
-      $(".planInvite").each(function(index){
-        console.log(index);
-        console.log(dataPosition);
-        if (index == dataPosition) {
-        Swal.fire({
-          position: 'center',
-          title: 'Espere...',
-          imageUrl: '../img/utilImages/ajax-loader.gif',
-          imageWidth: 100,
-          imageHeight: 100,
-          imageAlt: 'Loader',
-          showConfirmButton: false,
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          allowEnterKey: false,
-        })
-        $(".planInvite")[dataPosition].remove();
-        }
+      Swal.fire({
+        position: 'center',
+        title: 'Espere...',
+        imageUrl: '../img/utilImages/ajax-loader.gif',
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: 'Loader',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+      })
+      $(".planInviteButton").each(function(index){
+        console.log(index)
+        $(e.target).parent().remove();
       });
       },
     success: function(respuestaAjax) {
