@@ -7,11 +7,18 @@ if(isset($_GET['id'])){
     $idReunion=0; //Esto lo ponemos para que no dé error cuando no traemos el id de la reunión
 }
 //echo $idReunion;
-?>
 
-<div class= "contenedor-titulos"><h2>Empleados registrados</h2></div>
 
-<?php
+echo "<div class= 'contenedor-titulos'>";
+  if ($_SESSION['permisos'] == 1){
+  echo "<h2>Empleados registrados</h2>";
+  }
+  else
+  {
+  echo "<h2>Mi perfil</h2>";
+  }
+echo "</div>";
+
 try{
 
     require_once("../model/empleadoModelo.php");

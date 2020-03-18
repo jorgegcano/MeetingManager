@@ -10,13 +10,19 @@ $empleado=$empDAO->obtenerEmpleado($id);
 
 <div class="contenedor-alta-empleados">
 
-    <h2><?php echo ($id) ? "Actualizar Datos de Empleados" : "Alta de Empleados"; ?></h2>
+    <h2><?php echo ($id) ? "Editar Datos/Foto" : "Altas"; ?></h2>
 
     <form name="altaEmpleados" id="formularioAltaEmpleados" action="#" method="POST" enctype="multipart/form-data">
 
         <div class="contenedor-campos">
 
             <input type="hidden" name="id" id="id" value="<?php echo ($id) ? $empleado->getId() : '' ?>">
+
+            <?php
+
+            if (!$_SESSION || $_SESSION['permisos'] == 1) {
+
+            ?>
 
             <div class="campo-alta-empleados">
                 <label for="idEmpleado">ID Empleado:</label>
@@ -52,9 +58,12 @@ $empleado=$empDAO->obtenerEmpleado($id);
                 <input type="number" min="0" max="100" step="any" id="costeHora" name="costeHora" data-validation="required" value="<?php echo ($id) ? $empleado->getCosteHora() : '' ?>">
             </div>
 
+            <?php
+              }
+            ?>
 
             <div class="campo-alta-alta-empleados">
-                <label id="fotoLbl" for="foto" value="<?php echo ($id) ? $empleado->getPreviewImageUpdating($id, $empleado->getFoto()) : '' ?>"><i class="fas fa-camera"></i></label>
+                <label id="<?php echo ($_SESSION['permisos'] == 1) ? 'fotoLbl' : 'fotoLblEmp'?>" for="foto" value="<?php echo ($id) ? $empleado->getPreviewImageUpdating($id, $empleado->getFoto()) : '' ?>"><i class="fas fa-camera"></i></label>
                 <input type="file" name="foto" max="1" accept="image/*" id="foto">
             </div>
 

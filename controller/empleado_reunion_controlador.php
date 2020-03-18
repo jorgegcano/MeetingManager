@@ -30,6 +30,10 @@ if ($_GET['accion'] == 'invitar')
 
     $idEmpleado_fk = $_GET['idEmpleado_fk'];
 
+    $empleado_reunionDao = new Empleado_reunion_DAO();
+
+    if ($empleado_reunionDao->comprobarInvitado($idEmpleado_fk, $idReunion_fk)) {
+
     $para = $_GET['email'];
 
     require_once '../model/empleadoDAO.php';
@@ -60,15 +64,11 @@ if ($_GET['accion'] == 'invitar')
 
     $reunionDao->insertar_coste_estimado($reunion_elegida);
 
-    $empleado_reunionDao = new Empleado_reunion_DAO();
-
     $nexo = new Empleado_reunion();
 
     $nexo->setIdReunion_fk($idReunion_fk);
     $nexo->setIdEmpleado_fk($idEmpleado_fk);
     $nexo->setConfirmacion(0);
-
-    
 
     $empleado_reunionDao->insertarNexo($nexo);
 
@@ -79,7 +79,7 @@ if ($_GET['accion'] == 'invitar')
     $mensaje = "<a href='http://jorge00.vl21361.dinaserver.com/views/empleados_asistentes.php?id=".$idReunion_fk."&linkMail=true'>aceptar invitación</a>";
 
     enviaMail($para,  $asunto, $mensaje);
-
+}
 } elseif ($_GET['accion'] == 'anular_invitacion') {
     $idNexo = $_GET['idNexo'];
     $idReunion = $_GET['idReunion'];

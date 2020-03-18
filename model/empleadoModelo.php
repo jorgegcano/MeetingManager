@@ -261,22 +261,22 @@ endforeach;
 
         $datosEmpleado = $dao->obtenerEmpleado($idEmpleadoPK);
 
-        echo  "<div class='plans' id='employer-plan'>";?>
+        echo  "<div style='display:flex;width:fit-content;background-color: #ffffff; margin: 0 2rem; padding: 2rem; border-radius: 1rem;'>";?>
 
-        <div class='plan'>
-            <h2 class='plan-title'><?php echo $datosEmpleado->getNombre() . ' ' . $datosEmpleado->getApellidos() ?></h2>
-            <h2 class='plan-title'><?php echo $datosEmpleado->getCosteHora() . ' €/H' ?></h2>
-            <?php echo $this->checkPhoto($empleado->getFoto()); ?>
-            <ul class='datos-empleado'>
-                <li><strong>ID: </strong><?php echo $datosEmpleado->getIdEmpleado() ?></li>
-                <li><strong>DEPARTAMENTO: </strong><?php echo $datosEmpleado->getDepartamento() ?></li>
-                <li><strong>EMAIL: </strong> <?php echo $datosEmpleado->getEmail() ?> </li>
-            </ul>
-            <a href="../views/empleadoEditar.php?id=<?php echo $datosEmpleado->getId() ?>">
-            <i class="fas fa-user-edit"></i>
-            </a>
+        <div>
+          <div style='display:flex;'>
+          <?php echo $this->checkPhoto($datosEmpleado->getFoto()); ?>
+          </div>
+          <a style='display:flex;justify-content:center;' href="../views/empleadoAlta.php?id=<?php echo $datosEmpleado->getId() ?>">
+          <i style='font-size: 3rem;color: #8f3237;' class="fas fa-edit"></i>
+          </a>
+            <h1 style="color:#4f4f4f"><?php echo $datosEmpleado->getNombre() . ' ' . $datosEmpleado->getApellidos() ?></h1>
         </div>
-
+          <div style='padding-left: 5rem';>
+            <h2 style="color:#4f4f4f"><strong>ID: </strong><?php echo $datosEmpleado->getIdEmpleado() ?></h2>
+            <h2 style="color:#4f4f4f"><strong>DEPARTAMENTO: </strong><?php echo $datosEmpleado->getDepartamento() ?></h2>
+            <h2 style="color:#4f4f4f"><strong>EMAIL: </strong> <?php echo $datosEmpleado->getEmail() ?></h2>
+          </div>
         <?php
         echo "</div>";
         return $datosEmpleado;

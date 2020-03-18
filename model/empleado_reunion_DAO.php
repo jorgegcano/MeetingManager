@@ -19,13 +19,6 @@ class Empleado_reunion_DAO
      */
     public function insertarNexo($nexo)
     {
-        $consulta=$this->db->query("SELECT * FROM empleado_reunion");
-        foreach ($consulta->fetchAll() as $fks) {
-          if ($nexo->getIdEmpleado_fk() == $fks['idEmpleado_fk'] && $nexo->getIdReunion_fk() == $fks['idReunion_fk']) {
-              return;
-          }
-        }
-
         $stmt = $this->db->prepare("INSERT INTO empleado_reunion (idEmpleado_fk, idReunion_fk, confirmacion) VALUES (?, ?, ?)");
         $stmt->bindValue(1, $nexo->getIdEmpleado_fk());
         $stmt->bindValue(2, $nexo->getIdReunion_fk());
@@ -36,6 +29,17 @@ class Empleado_reunion_DAO
         } else {
           echo 0;
         }
+  }
+
+  public function comprobarInvitado($idEmpleado, $idReunion)
+  {
+    $consulta=$this->db->query("SELECT * FROM empleado_reunion");
+    foreach ($consulta->fetchAll() as $fks) {
+      if ($idEmpleado == $fks['idEmpleado_fk'] && $idReunion == $fks['idReunion_fk']) {
+        return false;
+      }
+      }
+      return true;
   }
 
     /***

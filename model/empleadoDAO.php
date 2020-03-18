@@ -153,17 +153,19 @@ class EmpleadoDAO
         }
     }
 
-    public function actualizarEmpleadoSinPermisos($empleado)
+    public function actualizarFotoEmpleado($empleado)
     {
-        $stmt = $this->db->prepare('UPDATE empleado SET idEmpleado=?, nombre=?, apellidos=?, email=?, departamento=?, foto=?  WHERE id=?');
-        $stmt->bindValue(1, $empleado->getIdEmpleado());
-        $stmt->bindValue(2, $empleado->getNombre());
-        $stmt->bindValue(3, $empleado->getApellidos());
-        $stmt->bindValue(4, $empleado->getEmail());
-        $stmt->bindValue(5, $empleado->getDepartamento());
-        $stmt->bindValue(6, $empleado->getFoto());
-        $stmt->bindValue(7, $empleado->getId());
+        $stmt = $this->db->prepare('UPDATE empleado SET foto=?  WHERE id=?');
+        $stmt->bindValue(1, $empleado->getFoto());
+        $stmt->bindValue(2, $empleado->getId());
         $stmt->execute();
+        if ($stmt) {
+          echo 1;
+            //return $this->db->lastInsertId();
+        } else {
+          echo 0;
+            //return -1;
+        }
     }
 
     public function compruebaEmpleado($idEmpleado, $password)

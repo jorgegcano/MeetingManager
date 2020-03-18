@@ -320,12 +320,8 @@ class Empleado_reunion
         ?>
 
             <div class='plan'>
-                <h2 class='plan-title'><?php echo $nexo->getNombreModelo(). ' ' . $nexo->getApellidosModelo(). ' ' .$nexo->getId(). ' ' .$nexo->getConfirmacion() ?></h2>
+                <h2 class='plan-title'><?php echo $nexo->getNombreModelo(). ' ' . $nexo->getApellidosModelo()?></h2>
                 <h2 class='plan-title' id="costeHora">
-                <?php if ($_SESSION['id'] == $nexo->getIdEmpleado_fk()){
-                    echo $nexo->getCosteHora() . ' €/reunión' ;
-                }?>
-
                 </h2>
                 <img class='foto' src='../img/<?php echo $nexo->getFoto() ?>'>
                 <ul class='datos-empleado'>
@@ -346,10 +342,9 @@ class Empleado_reunion
                     }?>
                 </ul>
             </div>
-        <?php $gasto_total += $nexo->getCosteHora();
 
+        <?php
         endforeach;
-        $nexo->setCosteEstimadoModelo($gasto_total);
         echo " </div>";
 
 

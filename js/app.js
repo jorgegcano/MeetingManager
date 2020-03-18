@@ -158,9 +158,17 @@ var today = new Date();
   const id = $('input[name="id"]').val();
   const imgPreviewUpdating = $("#fotoLbl").attr("value");
   if (id && imgPreviewUpdating) {
+
     $('#formularioAltaEmpleados + img').remove();
     $('#fotoLbl').empty();
     $('#fotoLbl').append('<img src="' + imgPreviewUpdating + '" width="80" height="90" style="border-radius: 1rem; border: 1px solid #e1e1e1"/>');
+  }
+
+  const imgPreviewUpdatingEmp = $("#fotoLblEmp").attr("value");
+  if (id && imgPreviewUpdatingEmp) {
+    $('#formularioAltaEmpleados + img').remove();
+    $('#fotoLblEmp').empty();
+    $('#fotoLblEmp').append('<img src="' + imgPreviewUpdatingEmp + '" width="250" height="270" style="border-radius: 1rem; border: 1px solid #e1e1e1"/>');
   }
 
   function filePreview(input) {
@@ -169,7 +177,9 @@ var today = new Date();
       reader.onload = function(e) {
         $('#formularioAltaEmpleados + img').remove();
         $('#fotoLbl').empty();
+        $('#fotoLblEmp').empty();
         $('#fotoLbl').append('<img src="' + e.target.result + '" width="80" height="90" style="border-radius: 1rem; border: 1px solid #e1e1e1"/>');
+        $('#fotoLblEmp').append('<img src="' + e.target.result + '" width="250" height="270" style="border-radius: 1rem; border: 1px solid #e1e1e1;"/>');
       }
       reader.readAsDataURL(input.files[0]);
     }
@@ -199,6 +209,8 @@ var today = new Date();
     beforeSend: function(){
       console.log('cargando');
       $(".planInvite").each(function(index){
+        console.log(index);
+        console.log(dataPosition);
         if (index == dataPosition) {
         Swal.fire({
           position: 'center',
@@ -217,7 +229,7 @@ var today = new Date();
       });
       },
     success: function(respuestaAjax) {
-      console.log(respuestaAjax);
+      //console.log(respuestaAjax);
       if (respuestaAjax == 1) {
         Swal.fire({
           position: 'center',
@@ -229,8 +241,6 @@ var today = new Date();
           allowEscapeKey: false,
           allowEnterKey: false,
         })
-        console.log('invitado');
-        $("#loading").hide();
       }
       else
       {

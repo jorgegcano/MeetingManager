@@ -116,6 +116,10 @@ if(isset($_POST['accion']) && $_POST['accion'] == 'accesoEmpleado') {
               }
           }
 
+            if( isset($datos['idEmpleado']) || isset($datos['nombre']) ||
+            isset($datos['apellidos']) || isset($datos['email']) || isset($datos['departamento']) ||
+            isset($datos['costeHora'])) {
+
               $empleado->setId($datos['id']);
               $empleado->setIdEmpleado($datos['idEmpleado']);
               $empleado->setNombre($datos['nombre']);
@@ -125,6 +129,11 @@ if(isset($_POST['accion']) && $_POST['accion'] == 'accesoEmpleado') {
               $empleado->setCosteHora($datos['costeHora']);
 
               $empDao->actualizarEmpleado($empleado);
+            }
+            else
+            {
+              $empDao->actualizarFotoEmpleado($empleado);
+            }
 
 
           } catch (Exception $e) {
